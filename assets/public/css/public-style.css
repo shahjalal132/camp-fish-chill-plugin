@@ -126,6 +126,19 @@
   color: #fff;
 }
 
+#camp-pagination ul .page-count {
+  font-family: "Roboto", sans-serif;
+  font-size: 15px;
+  border: 1px solid #bfbfbf;
+  margin-right: 2px;
+  margin-top: -8px;
+  border-radius: 5px;
+  text-decoration: none !important;
+  padding: 8px 10px;
+  font-weight: 600;
+  color: #8c6235;
+}
+
 /* Style for the loading overlay */
 /* Style for the loading overlay */
 #posts-loop-overlay {

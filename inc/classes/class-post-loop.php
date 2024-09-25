@@ -143,13 +143,37 @@ class Post_Loop {
         // Execute query to get posts
         $custom_query = new \WP_Query( $args );
 
-        // Get max number of pages
-        echo paginate_links( [
-            'total'     => $custom_query->max_num_pages,
-            'current'   => $paged,
-            'prev_text' => __( '« Previous' ),
-            'next_text' => __( 'Next »' ),
-            'type'      => 'list',
-        ] );
+        // Get total number of pages
+        $total_pages = $custom_query->max_num_pages;
+
+        // Display pagination if there are more than one page
+        if ( $total_pages > 1 ) {
+
+            // Start the pagination UL
+            echo '<ul class="page-numbers">';
+
+            // Add the "Page X of Y" count as the first item in the pagination list
+            echo '<li class="page-count">Page ' . intval( $paged ) . ' of ' . intval( $total_pages ) . '</li>';
+
+            // Output pagination links
+            $links = paginate_links( [
+                'total'     => $total_pages,
+                'current'   => max( 1, $paged ), // Ensure we don't get a page less than 1
+                'prev_text' => __( '« Previous' ),
+                'next_text' => __( 'Next »' ),
+                'type'      => 'array', // Return as array to allow custom placement
+            ] );
+
+            // Loop through the pagination links and display them
+            if ( $links ) {
+                foreach ( $links as $link ) {
+                    echo '<li>' . $link . '</li>';
+                }
+            }
+
+            // Close the pagination UL
+            echo '</ul>';
+        }
     }
+
 }
