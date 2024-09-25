@@ -39,16 +39,25 @@ class Post_Loop {
 
     public function ajax_load_posts_shortcode() {
 
+        // Check nonce
+        if ( !isset( $_POST['nonce'] ) || !wp_verify_nonce( $_POST['nonce'], 'camp_post_loop' ) ) {
+            wp_send_json_error( 'Invalid nonce' );
+        }
+
+        // Extract the page number from the pagination link's href
         $paged = isset( $_POST['page'] ) ? $_POST['page'] : 1;
 
+        // Load posts
         ob_start();
         $this->load_posts( $paged );
         $posts_content = ob_get_clean();
 
+        // Load pagination
         ob_start();
         $this->paginate_posts( $paged );
         $pagination_content = ob_get_clean();
 
+        // Send JSON response
         wp_send_json( [
             'posts'      => $posts_content,
             'pagination' => $pagination_content,
@@ -60,22 +69,25 @@ class Post_Loop {
 
     private function load_posts( $paged ) {
 
+        // Make query
         $args = [
             'post_type'      => 'post',
             'posts_per_page' => 5,
             'paged'          => $paged,
         ];
 
+        // Execute query to get posts
         $custom_query = new \WP_Query( $args );
 
         // convert posts to json
         $this->posts_json = json_encode( $custom_query->posts );
         // put posts to log
-        $this->put_program_logs( 'Posts JSON: ' . $this->posts_json );
+        // $this->put_program_logs( 'Posts JSON: ' . $this->posts_json );
 
         if ( $custom_query->have_posts() ) :
             while ( $custom_query->have_posts() ) :
                 $custom_query->the_post(); ?>
+
                 <div class="post-item">
                     <h2><?php the_title(); ?></h2>
                     <div class="post-excerpt">
@@ -83,6 +95,7 @@ class Post_Loop {
                     </div>
                     <a href="<?php the_permalink(); ?>" class="read-more">Read More</a>
                 </div>
+
             <?php endwhile;
         else :
             echo '<p>No posts found.</p>';
@@ -92,14 +105,18 @@ class Post_Loop {
     }
 
     private function paginate_posts( $paged ) {
+
+        // Make query
         $args = [
             'post_type'      => 'post',
             'posts_per_page' => 5,
             'paged'          => $paged,
         ];
 
+        // Execute query to get posts
         $custom_query = new \WP_Query( $args );
 
+        // Get max number of pages
         echo paginate_links( [
             'total'     => $custom_query->max_num_pages,
             'current'   => $paged,

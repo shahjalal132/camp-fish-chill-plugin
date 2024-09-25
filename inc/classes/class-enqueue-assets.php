@@ -56,6 +56,7 @@ class Enqueue_Assets {
 
         wp_localize_script( 'wpb-public-js', 'ajaxpagination', array(
             'ajaxurl' => admin_url( 'admin-ajax.php' ),
+            'nonce'   => wp_create_nonce( 'camp_post_loop' ),
         ) );
     }
 

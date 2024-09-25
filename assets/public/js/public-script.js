@@ -1,5 +1,6 @@
 (function ($) {
   $(document).ready(function () {
+
     // Handle pagination click
     $(document).on("click", "#pagination a", function (e) {
       e.preventDefault();
@@ -19,6 +20,7 @@
         data: {
           action: "load_posts",
           page: page,
+          nonce: ajaxpagination.nonce,
         },
         success: function (response) {
           // Update the posts content and pagination
