@@ -1,1 +1,56 @@
 /* Public Styles CSS Codes */
+
+.camp-post-thumbnail img.attachment-post-thumbnail {
+  border-radius: 20px !important;
+}
+
+.camp-post-title {
+  font-family: "Roboto", sans-serif;
+  font-size: 19.2px;
+  line-height: 23.04px;
+  font-weight: 600;
+  color: #482b06;
+  margin: 20px 0;
+}
+
+.camp-post-excerpt {
+  font-family: "Roboto", sans-serif;
+  font-size: 17px;
+  line-height: 24px;
+  font-weight: 400;
+  color: #2b2b2b;
+  text-align: justify;
+}
+
+.camp-read-more {
+  border: 0px;
+  border-radius: 10px;
+  background-color: #143a03;
+  display: block;
+  width: 150px;
+  margin-top: 5px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding: 6px 14px;
+  color: #fff !important;
+  float: none !important;
+  text-align: center;
+  font-size: 16px !important;
+  font-weight: 700;
+  font-family: "Roboto", sans-serif;
+  text-decoration: none !important;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.camp-read-more:hover {
+  background-color: #8c6235;
+  color: #fff !important;
+  text-decoration: none !important;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}

@@ -48,12 +48,14 @@ class Enqueue_Assets {
      * @return void
      */
     public function enqueue_public_assets() {
+
         // enqueue public css
-        wp_enqueue_style( "wpb-public-css", PLUGIN_PUBLIC_ASSETS_URL . "/css/public-style.css", [], time(), "all" );
+        wp_enqueue_style( "wpb-bootstrap", PLUGIN_PUBLIC_ASSETS_URL . "/css/bootstrap.min.css", [], false, "all" );
+        wp_enqueue_style( "wpb-public-css", PLUGIN_PUBLIC_ASSETS_URL . "/css/public-style.css", [ 'wpb-bootstrap' ], time(), "all" );
 
         // enqueue public js    
-        wp_enqueue_script( "wpb-public-js", PLUGIN_PUBLIC_ASSETS_URL . "/js/public-script.js", [ 'jquery' ], time(), true );
-
+        wp_enqueue_script( "wpb-bootstrap", PLUGIN_PUBLIC_ASSETS_URL . "/js/bootstrap.bundle.min.js", [], false, true );
+        wp_enqueue_script( "wpb-public-js", PLUGIN_PUBLIC_ASSETS_URL . "/js/public-script.js", [ 'jquery', 'wpb-bootstrap' ], time(), true );
         wp_localize_script( 'wpb-public-js', 'ajaxpagination', array(
             'ajaxurl' => admin_url( 'admin-ajax.php' ),
             'nonce'   => wp_create_nonce( 'camp_post_loop' ),

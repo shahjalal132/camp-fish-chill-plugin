@@ -26,7 +26,7 @@ class Post_Loop {
         ob_start(); ?>
 
         <div id="posts-wrapper">
-            <div id="posts-loop">
+            <div id="posts-loop" class="row">
                 <?php $this->load_posts( 1 ); ?>
             </div>
             <div id="pagination">
@@ -72,7 +72,7 @@ class Post_Loop {
         // Make query
         $args = [
             'post_type'      => 'post',
-            'posts_per_page' => 5,
+            'posts_per_page' => 6,
             'paged'          => $paged,
         ];
 
@@ -88,12 +88,27 @@ class Post_Loop {
             while ( $custom_query->have_posts() ) :
                 $custom_query->the_post(); ?>
 
-                <div class="post-item">
-                    <h2><?php the_title(); ?></h2>
-                    <div class="post-excerpt">
+                <div class="post-item col-lg-4 col-md-6 col-sm-12 mb-4">
+                    <!-- display post thumbnail -->
+                    <?php if ( has_post_thumbnail() ) : ?>
+                        <div class="camp-post-thumbnail">
+                            <?php the_post_thumbnail(); ?>
+                        </div>
+                    <?php endif; ?>
+                    <!-- /display post thumbnail -->
+                    <!-- post title -->
+                    <h2 class="camp-post-title text-center"><?php the_title(); ?></h2>
+                    <!-- /post title -->
+                    <!-- post excerpt -->
+                    <div class="camp-post-excerpt text-center">
                         <?php the_excerpt(); ?>
                     </div>
-                    <a href="<?php the_permalink(); ?>" class="read-more">Read More</a>
+                    <!-- /post excerpt -->
+                    <!-- Read More -->
+                    <div class="read-more-btn-wrapper text-center">
+                        <a href="<?php the_permalink(); ?>" class="camp-read-more">read more</a>
+                    </div>
+                    <!-- /Read More -->
                 </div>
 
             <?php endwhile;
@@ -109,7 +124,7 @@ class Post_Loop {
         // Make query
         $args = [
             'post_type'      => 'post',
-            'posts_per_page' => 5,
+            'posts_per_page' => 6,
             'paged'          => $paged,
         ];
 
