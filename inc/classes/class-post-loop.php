@@ -29,7 +29,8 @@ class Post_Loop {
             <div id="posts-loop" class="row">
                 <?php $this->load_posts( 1 ); ?>
             </div>
-            <div id="camp-pagination">
+            <div id="posts-loop-overlay"></div>
+            <div id="camp-pagination" class="mt-3">
                 <?php $this->paginate_posts( 1 ); ?>
             </div>
         </div>

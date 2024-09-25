@@ -1,6 +1,5 @@
 (function ($) {
   $(document).ready(function () {
-
     // Handle pagination click
     $(document).on("click", "#camp-pagination a", function (e) {
       e.preventDefault();
@@ -14,6 +13,10 @@
 
     // AJAX function to load posts based on the current page
     function ajaxLoadPosts(page) {
+      // Show the overlay and disable scrolling
+      $("#posts-loop-overlay").show();
+      $("body").css("overflow", "hidden");
+
       $.ajax({
         url: ajaxpagination.ajaxurl,
         type: "POST",
@@ -29,6 +32,11 @@
         },
         error: function (error) {
           console.log("Error loading posts:", error);
+        },
+        complete: function () {
+          // Hide the overlay and enable scrolling again
+          $("#posts-loop-overlay").hide();
+          $("body").css("overflow", ""); // Restore default scrolling behavior
         },
       });
     }
