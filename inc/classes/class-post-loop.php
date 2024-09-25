@@ -81,7 +81,7 @@ class Post_Loop {
         $custom_query = new \WP_Query( $args );
 
         // convert posts to json
-        $this->posts_json = json_encode( $custom_query->posts );
+        // $this->posts_json = json_encode( $custom_query->posts );
         // put posts to log
         // $this->put_program_logs( 'Posts JSON: ' . $this->posts_json );
 
@@ -89,6 +89,7 @@ class Post_Loop {
             while ( $custom_query->have_posts() ) :
                 $custom_query->the_post(); ?>
 
+                <!-- Display single post item -->
                 <div class="post-item col-lg-4 col-md-6 col-sm-12 mb-4">
 
                     <!-- Display post thumbnail and link to post -->
@@ -117,9 +118,10 @@ class Post_Loop {
 
                     <!-- Read More Button -->
                     <div class="read-more-btn-wrapper text-center">
-                        <a href="<?php the_permalink(); ?>" class="camp-read-more">Read More</a>
+                        <a href="<?php the_permalink(); ?>" class="camp-read-more"><?php _e( 'read more', 'camp' ); ?></a>
                     </div>
                 </div>
+                <!-- /Display single post item -->
 
             <?php endwhile;
         else :
