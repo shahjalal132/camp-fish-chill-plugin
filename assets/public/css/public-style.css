@@ -1,8 +1,52 @@
-/* Public Styles CSS Codes */
+.camp-post-thumbnail {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+}
 
 .camp-post-thumbnail img.attachment-post-thumbnail {
-  border-radius: 20px !important;
+  display: block;
+  border-radius: 20px;
+  transition: transform 0.3s ease;
 }
+
+/* Overlay element */
+.camp-post-thumbnail .thumbnail-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Zoom icon styles */
+.camp-post-thumbnail .zoom-icon {
+  color: white;
+  font-size: 32px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  transform: rotate(90deg);
+}
+
+/* On hover, show the overlay and icon */
+.camp-post-thumbnail:hover .thumbnail-overlay {
+  opacity: 1;
+}
+
+.camp-post-thumbnail:hover .zoom-icon {
+  opacity: 1;
+}
+
+/* Optional: Image zoom effect on hover */
+/* .camp-post-thumbnail:hover img.attachment-post-thumbnail {
+  transform: scale(1.05);
+} */
 
 .camp-post-title {
   font-family: "Roboto", sans-serif;
@@ -53,4 +97,31 @@
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
+}
+
+#camp-pagination ul.page-numbers {
+  margin: 0;
+  list-style: none;
+  padding: 0;
+  display: flex;
+  /* gap: 1rem; */
+}
+
+#camp-pagination ul li .page-numbers {
+  font-family: "Roboto", sans-serif;
+  font-size: 15px;
+  border: 1px solid #bfbfbf;
+  margin: 2px;
+  border-radius: 5px;
+  text-decoration: none !important;
+  padding: 10px;
+  font-weight: 600;
+  color: #8c6235;
+}
+
+#camp-pagination ul li .page-numbers:hover,
+#camp-pagination ul li span.current {
+  background: #8c6235;
+  border-color: #000000;
+  color: #fff;
 }

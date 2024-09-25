@@ -29,7 +29,7 @@ class Post_Loop {
             <div id="posts-loop" class="row">
                 <?php $this->load_posts( 1 ); ?>
             </div>
-            <div id="pagination">
+            <div id="camp-pagination">
                 <?php $this->paginate_posts( 1 ); ?>
             </div>
         </div>
@@ -89,26 +89,35 @@ class Post_Loop {
                 $custom_query->the_post(); ?>
 
                 <div class="post-item col-lg-4 col-md-6 col-sm-12 mb-4">
-                    <!-- display post thumbnail -->
+
+                    <!-- Display post thumbnail and link to post -->
                     <?php if ( has_post_thumbnail() ) : ?>
-                        <div class="camp-post-thumbnail">
-                            <?php the_post_thumbnail(); ?>
+                        <div class="camp-post-thumbnail text-center">
+                            <a href="<?php the_permalink(); ?>">
+                                <?php the_post_thumbnail(); ?>
+                                <div class="thumbnail-overlay">
+                                    <i class="fas fa-search-plus zoom-icon"></i>
+                                </div>
+                            </a>
                         </div>
                     <?php endif; ?>
-                    <!-- /display post thumbnail -->
-                    <!-- post title -->
-                    <h2 class="camp-post-title text-center"><?php the_title(); ?></h2>
-                    <!-- /post title -->
-                    <!-- post excerpt -->
+
+                    <!-- Post title with link -->
+                    <h2 class="camp-post-title text-center">
+                        <a href="<?php the_permalink(); ?>" class="camp-post-title">
+                            <?php the_title(); ?>
+                        </a>
+                    </h2>
+
+                    <!-- Post excerpt -->
                     <div class="camp-post-excerpt text-center">
                         <?php the_excerpt(); ?>
                     </div>
-                    <!-- /post excerpt -->
-                    <!-- Read More -->
+
+                    <!-- Read More Button -->
                     <div class="read-more-btn-wrapper text-center">
-                        <a href="<?php the_permalink(); ?>" class="camp-read-more">read more</a>
+                        <a href="<?php the_permalink(); ?>" class="camp-read-more">Read More</a>
                     </div>
-                    <!-- /Read More -->
                 </div>
 
             <?php endwhile;

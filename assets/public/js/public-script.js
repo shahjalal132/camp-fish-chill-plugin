@@ -2,7 +2,7 @@
   $(document).ready(function () {
 
     // Handle pagination click
-    $(document).on("click", "#pagination a", function (e) {
+    $(document).on("click", "#camp-pagination a", function (e) {
       e.preventDefault();
 
       // Extract the page number from the pagination link's href
@@ -25,7 +25,7 @@
         success: function (response) {
           // Update the posts content and pagination
           $("#posts-loop").html(response.posts);
-          $("#pagination").html(response.pagination);
+          $("#camp-pagination").html(response.pagination);
         },
         error: function (error) {
           console.log("Error loading posts:", error);
