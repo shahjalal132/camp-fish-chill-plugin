@@ -23,7 +23,7 @@ class Admin_Menu {
     }
 
     public function admin_page() {
-        // require_once PLUGIN_BASE_PATH . '/templates/admin-page.php';
+        require_once PLUGIN_BASE_PATH . '/templates/admin-page.php';
     }
 
 }
