@@ -51,6 +51,11 @@ if ( !defined( 'PLUGIN_LIBS_DIR_URL' ) ) {
     define( 'PLUGIN_LIBS_DIR_URL', untrailingslashit( plugin_dir_url( __FILE__ ) . '/inc/libs' ) );
 }
 
+// Define base name
+if ( !defined( 'PLUGIN_BASENAME' ) ) {
+    define( 'PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
+}
+
 // Require files
 require_once PLUGIN_BASE_PATH . '/loader.php';
 require_once PLUGIN_BASE_PATH . '/inc/helpers/autoloader.php';
@@ -86,3 +91,4 @@ function get_plugin_instance() {
 
 // Load plugin
 get_plugin_instance();
+
