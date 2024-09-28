@@ -14,7 +14,7 @@
     <form method="POST" action="">
         <label for="display_post_items"><?php _e( 'Display Posts: ', 'camp-fish-chill' ); ?></label>
         <input type="number" name="display_post_items" id="display_post_items"
-            value="<?php echo esc_attr( get_option( '_display_post_items', 6 ) ); ?>" />
+            value="<?php echo esc_attr( get_option( '_display_post_items' ) ); ?>" />
         <input type="submit" name="save_display_post_items" value="<?php _e( 'Save', 'camp-fish-chill' ); ?>"
             class="button button-primary" />
         <?php wp_nonce_field( 'save_display_post_items_action', 'save_display_post_items_nonce' ); ?>

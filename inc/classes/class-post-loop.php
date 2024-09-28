@@ -11,6 +11,7 @@ class Post_Loop {
     use Program_Logs;
 
     private $posts_json;
+    private $posts_per_page;
 
     public function __construct() {
         $this->setup_hooks();
@@ -20,6 +21,9 @@ class Post_Loop {
         add_shortcode( 'camp_post_loop', [ $this, 'custom_post_loop' ] );
         add_action( 'wp_ajax_load_posts', [ $this, 'ajax_load_posts_shortcode' ] );
         add_action( 'wp_ajax_nopriv_load_posts', [ $this, 'ajax_load_posts_shortcode' ] );
+
+        // get _display_post_items from option initially 6
+        $this->posts_per_page = get_option( '_display_post_items', 6 );
     }
 
     public function custom_post_loop() {
@@ -73,7 +77,7 @@ class Post_Loop {
         // Make query
         $args = [
             'post_type'      => 'post',
-            'posts_per_page' => 6,
+            'posts_per_page' => $this->posts_per_page,
             'paged'          => $paged,
         ];
 
@@ -136,7 +140,7 @@ class Post_Loop {
         // Make query
         $args = [
             'post_type'      => 'post',
-            'posts_per_page' => 6,
+            'posts_per_page' => $this->posts_per_page,
             'paged'          => $paged,
         ];
 
