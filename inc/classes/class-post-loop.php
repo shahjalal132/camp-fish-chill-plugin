@@ -22,6 +22,9 @@ class Post_Loop {
         add_action( 'wp_ajax_load_posts', [ $this, 'ajax_load_posts_shortcode' ] );
         add_action( 'wp_ajax_nopriv_load_posts', [ $this, 'ajax_load_posts_shortcode' ] );
 
+        add_filter( 'excerpt_length', [ $this, 'custom_excerpt_length' ], 999 );
+        add_filter( 'excerpt_more', [ $this, 'custom_excerpt_more' ] );
+
         // get _display_post_items from option initially 6
         $this->posts_per_page = get_option( '_display_post_items', 6 );
     }
@@ -122,7 +125,7 @@ class Post_Loop {
 
                     <!-- Read More Button -->
                     <div class="read-more-btn-wrapper text-center">
-                        <a href="<?php the_permalink(); ?>" class="camp-read-more"><?php _e( 'read more', 'camp' ); ?></a>
+                        <a href="<?php the_permalink(); ?>" class="camp-read-more"><?php _e( 'view post', 'camp' ); ?></a>
                     </div>
                 </div>
                 <!-- /Display single post item -->
@@ -178,6 +181,16 @@ class Post_Loop {
             // Close the pagination UL
             echo '</ul>';
         }
+    }
+
+    // Set custom excerpt length to 25 words
+    public function custom_excerpt_length( $length ) {
+        return 25;
+    }
+
+    // Modify the excerpt "more" string to display [...]
+    public function custom_excerpt_more( $more ) {
+        return ' [...]';
     }
 
 }
