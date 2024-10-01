@@ -102,7 +102,7 @@ class Post_Loop {
                     <!-- Display post thumbnail and link to post -->
                     <?php if ( has_post_thumbnail() ) : ?>
                         <div class="camp-post-thumbnail text-center">
-                            <a href="<?php the_permalink(); ?>">
+                            <a href="<?php the_permalink(); ?>" title="<?= the_title(); ?>">
                                 <?php the_post_thumbnail(); ?>
                                 <div class="thumbnail-overlay">
                                     <i class="fas fa-search-plus zoom-icon"></i>
@@ -113,7 +113,7 @@ class Post_Loop {
 
                     <!-- Post title with link -->
                     <h2 class="camp-post-title text-center">
-                        <a href="<?php the_permalink(); ?>" class="camp-post-title">
+                        <a href="<?php the_permalink(); ?>" class="camp-post-title" title="<?= the_title(); ?>">
                             <?php the_title(); ?>
                         </a>
                     </h2>
@@ -125,7 +125,8 @@ class Post_Loop {
 
                     <!-- Read More Button -->
                     <div class="read-more-btn-wrapper text-center">
-                        <a href="<?php the_permalink(); ?>" class="camp-read-more"><?php _e( 'view post', 'camp' ); ?></a>
+                        <a href="<?php the_permalink(); ?>" title="<?= the_title(); ?>"
+                            class="camp-read-more"><?php _e( 'view post', 'camp' ); ?></a>
                     </div>
                 </div>
                 <!-- /Display single post item -->
