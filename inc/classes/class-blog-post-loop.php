@@ -118,6 +118,30 @@ class Blog_Post_Loop {
                         </a>
                     </h2>
 
+                    <!-- post data and category -->
+                    <p class="camp-post-meta text-center">
+                        <!-- Display post published date -->
+                        <span class="published-date">
+                            <?php echo get_the_date( 'M j, Y' ); ?>
+                        </span>
+                        |
+                        <!-- Display post categories -->
+                        <span class="category-data">
+                            <?php
+                            $categories = get_the_category();
+                            if ( !empty( $categories ) ) {
+                                foreach ( $categories as $category ) {
+                                    echo '<a href="' . esc_url( get_category_link( $category->term_id ) ) . '" rel="tag">' . esc_html( $category->name ) . '</a>';
+                                    if ( next( $categories ) ) {
+                                        echo ', ';
+                                    }
+                                }
+                            }
+                            ?>
+                        </span>
+                    </p>
+                    <!-- /post data and category -->
+
                     <!-- Post excerpt -->
                     <div class="camp-post-excerpt text-center">
                         <?php the_excerpt(); ?>

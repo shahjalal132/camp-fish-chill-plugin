@@ -165,3 +165,14 @@
 #posts-loop-overlay.active {
   display: flex; /* Show the overlay when active */
 }
+
+.published-date{
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.category-data{
+  font-size: 15px;
+  font-weight: 700;
+  font-style: italic;
+}
